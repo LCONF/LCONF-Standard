@@ -1,0 +1,18 @@
+site_name: LCONF-Standard
+
+site_url: http://lconf.github.io/LCONF-Standard/
+site_description: The official LCONF data serialization format Standard.
+repo_url: https://github.com/LCONF/LCONF-Standard/
+
+pages:
+- Home: 'index.md'
+- Specification:
+    - 'LCONF-Standard': 'LCONF-Standard.md'
+- About:
+    - 'License': 'LICENSE.md'
+    - 'README': 'README.md'
+
+use_directory_urls: true
+copyright: Copyright &copy; 2014 - 2015, <strong>peter1000</strong> <a href="https://github.com/peter1000">https://github.com/peter1000</a>. <br /> All rights reserved.
+
+theme: 'bootstrap'
