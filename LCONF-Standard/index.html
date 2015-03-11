@@ -119,17 +119,25 @@
             <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="main active"><a href="#the-lconf-standard-specification">The LCONF-Standard Specification</a></li>
+        <li class="main active"><a href="#the-official-lconf-standard-specification">The Official LCONF-Standard Specification</a></li>
         
             <li><a href="#copyrights-licenses">Copyrights &amp; Licenses</a></li>
+        
+    
+        <li class="main "><a href="#1-introduction">1. Introduction</a></li>
+        
+            <li><a href="#11-design-goals">1.1. Design Goals</a></li>
+        
+            <li><a href="#12-relation-to-other-data-serialization-formats">1.2. Relation to other data serialization formats</a></li>
         
     
     </ul>
 </div></div>
             <div class="col-md-9" role="main">
 
-<h1 id="the-lconf-standard-specification">The LCONF-Standard Specification</h1>
-<h2 id="copyrights-licenses">Copyrights &amp; Licenses</h2>
+<h2 id="the-official-lconf-standard-specification">The Official LCONF-Standard Specification</h2>
+<p>Latest unfinished version (0.10dev) (2015-03-11) </p>
+<h3 id="copyrights-licenses">Copyrights &amp; Licenses</h3>
 <p>The <strong>LCONF-Standard documentation</strong> and associated documentation files 
 (the "DOCUMENTATION") is licensed under the following terms:</p>
 <blockquote>
@@ -153,7 +161,26 @@ OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, 
 ARISING FROM, OUT OF OR IN CONNECTION WITH THE DOCUMENTATION OR THE 
 USE OF THE INFORMATION HEREIN.</p>
-</blockquote></div>
+</blockquote>
+<h1 id="1-introduction">1. Introduction</h1>
+<p><strong>LCONF</strong> The light and simple readable data serialization format for dynamic configurations and data exchange. </p>
+<p>It is a data serialization format designed to be <em>light and simple</em>, <em>with special emphasis on being human-friendly</em> and works well with many modern programming languages. This is a complete specification of the information needed to develop applications for processing LCONF. </p>
+<p>LCONF was specifically designed to be useful to people working with program configuration and configuration files as well as for other common use cases such as: data exchange, interprocess messaging, log files, cross-language data sharing. <br /></p>
+<p>It uses <em>Unicode printable characters</em>, containing the data itself and <em>Indentation</em> to provide structure in combination with very few <em>Ascii characters</em> which provide structural information.
+This excellent combination allows the data to show itself in a human-friendly, easily readable format.</p>
+<p>Unlike many other data serialization formats LCONF expects a predefined known structure with implemented default data.</p>
+<h2 id="11-design-goals">1.1. Design Goals</h2>
+<p>The design goals for LCONF are, in no priority:</p>
+<ul>
+<li>LCONF is easily writeable and readable by humans.</li>
+<li>LCONF has minmal but strict structure.</li>
+<li>LCONF data is portable between programming languages.</li>
+<li>LCONF allows optional <em>Comment lines</em> which are not part of the actual data.</li>
+<li>LCONF was designed from the start to expects a predefined known structure with implemented default data.</li>
+</ul>
+<h2 id="12-relation-to-other-data-serialization-formats">1.2. Relation to other data serialization formats</h2>
+<p>LCONF builds upon some concepts from <a href="http://json.org/">JSON</a>, <a href="https://code.google.com/p/rson/">RSON</a>/<a href="https://pypi.python.org/pypi/rsonlite/0.1.0">RSONLITE</a>, <a href="http://en.wikipedia.org/wiki/INI_file">INI</a>, and <a href="http://yaml.org/">YAML</a>but has also very destinct features.</p>
+<p>A major difference in design to many other data serialization formats is that LCONF was designed from the start to expects a predefined known structure with implemented default data.</p></div>
         </div>
 
         
