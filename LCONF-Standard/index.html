@@ -13,7 +13,7 @@
 
         <link href="../css/bootstrap-3.0.3.min.css" rel="stylesheet">
         <link href="../css/font-awesome-4.0.3.css" rel="stylesheet">
-        <link href="../css/prettify-1.0.css" rel="stylesheet">
+        <link rel="stylesheet" href="../css/highlight.css">
         <link href="../css/base.css" rel="stylesheet">
 
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -74,11 +74,11 @@
                     <ul class="dropdown-menu">
                     
                         <li >
-                            <a href="../README/">README</a>
+                            <a href="../LICENSE/">License</a>
                         </li>
                     
                         <li >
-                            <a href="../LICENSE/">LICENSE</a>
+                            <a href="../README/">README</a>
                         </li>
                     
                     </ul>
@@ -89,14 +89,13 @@
 
             <!-- Search, Navigation and Repo links -->
             <ul class="nav navbar-nav navbar-right">
-                
                 <li >
                     <a rel="next" href="..">
                         <i class="fa fa-arrow-left"></i> Previous
                     </a>
                 </li>
                 <li >
-                    <a rel="prev" href="../README/">
+                    <a rel="prev" href="../LICENSE/">
                         Next <i class="fa fa-arrow-right"></i>
                     </a>
                 </li>
@@ -119,7 +118,7 @@
             <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="main active"><a href="#the-official-lconf-standard-specification">The Official LCONF-Standard Specification</a></li>
+        <li class="main active"><a href="#the-official-lconf-standard">The Official LCONF-Standard</a></li>
         
             <li><a href="#copyrights-licenses">Copyrights &amp; Licenses</a></li>
         
@@ -130,71 +129,545 @@
         
             <li><a href="#12-relation-to-other-data-serialization-formats">1.2. Relation to other data serialization formats</a></li>
         
+            <li><a href="#13-design-overview">1.3. Design Overview</a></li>
+        
+    
+        <li class="main "><a href="#2-lconf-standard-specification">2. LCONF-Standard Specification</a></li>
+        
+            <li><a href="#21-key-value-separator">2.1 Key-Value-Separator</a></li>
+        
+            <li><a href="#22-trailing-spaces">2.2 Trailing Spaces</a></li>
+        
+            <li><a href="#23-lconfs-native-data-type">2.3 LCONF's Native Data Type</a></li>
+        
+            <li><a href="#24-indentation">2.4 Indentation</a></li>
+        
+            <li><a href="#25-named-sections">2.5 Named-Sections</a></li>
+        
+            <li><a href="#26-comment-lines">2.6 Comment-Lines</a></li>
+        
+            <li><a href="#27-two-structures-which-hold-data">2.7 Two Structures Which Hold Data</a></li>
+        
+            <li><a href="#28-two-collection-structures">2.8 Two Collection Structures</a></li>
+        
+    
+        <li class="main "><a href="#3-lconf-character-restrictions">3. LCONF Character Restrictions</a></li>
+        
+            <li><a href="#restriction-section-startend-tag">Restriction: Section Start/End Tag</a></li>
+        
+            <li><a href="#restriction-trailing-spaces">Restriction: Trailing Spaces</a></li>
+        
+            <li><a href="#restriction-first-none-white-character-of-a-line">Restriction: FIRST none white character of a line</a></li>
+        
+            <li><a href="#restriction-last-character-of-a-line">Restriction: LAST character of a line</a></li>
+        
+            <li><a href="#restriction-comment-lines-indentation">Restriction: Comment Lines indentation</a></li>
+        
+            <li><a href="#restriction-unique-names">Restriction: Unique names</a></li>
+        
+    
+        <li class="main "><a href="#4-lconf-default-template-structure">4. LCONF-Default-Template-Structure</a></li>
+        
+            <li><a href="#41-lconf-section-key-order">4.1 LCONF-Section Key Order</a></li>
+        
+            <li><a href="#42-default-commentempty-lines">4.2 Default-Comment/Empty Lines</a></li>
+        
+            <li><a href="#43-default-values">4.3 Default Values</a></li>
+        
+            <li><a href="#44-value-transformation">4.4 Value Transformation</a></li>
+        
     
     </ul>
 </div></div>
             <div class="col-md-9" role="main">
 
-<h2 id="the-official-lconf-standard-specification">The Official LCONF-Standard Specification</h2>
-<p>Latest unfinished version (0.10dev) (2015-03-11) </p>
-<h3 id="copyrights-licenses">Copyrights &amp; Licenses</h3>
-<p>The <strong>LCONF-Standard documentation</strong> and associated documentation files 
+<h1 id="the-official-lconf-standard">The Official LCONF-Standard</h1>
+<p><strong>Unfinished Version 8 (20150808)</strong></p>
+<ul>
+<li>The source of the documentation was rewritten in markdown format.</li>
+<li>In the documentation <code>Key-Value-Mappings</code> are renamed to <code>Single-Blocks</code>.</li>
+<li>Breaking changes:<ul>
+<li>The <em>LCONF-Section</em> indentation level was previously exact 3 spaces per level. This new version of the
+    LCONF-Standard allows that LCONF-Section specify there own number of spaces used per indentation level.
+    For this reason the LCONF-Section start line format changed adding the indentation space number used for the
+    section.</li>
+<li><em>Key :: Value-Lists</em>: leading or ending whitespace of comma separated values are now required to be stripped.</li>
+</ul>
+</li>
+</ul>
+<h2 id="copyrights-licenses">Copyrights &amp; Licenses</h2>
+<p>The <strong>LCONF-Standard documentation</strong> and associated documentation files
 (the "DOCUMENTATION") is licensed under the following terms:</p>
 <blockquote>
 <p>Copyright (c) 2014, 2015: <strong>peter1000</strong>  <a href="https://github.com/peter1000">https://github.com/peter1000</a>.<br />
 All rights reserved.</p>
-<p>The DOCUMENTATION may be freely copied, published and distributed to 
-others, provided that the above copyright notice and this Copyright 
-License are included on all such copies or substantial portions of the 
+<p>The DOCUMENTATION may be freely copied, published and distributed to
+others, provided that the above copyright notice and this Copyright
+License are included on all such copies or substantial portions of the
 DOCUMENTATION.</p>
-<p>However, the content of this DOCUMENTATION itself may not be modified 
-in any way, including by removing the copyright notice, except as 
-required to translate it into languages other than English or into a 
+<p>However, the content of this DOCUMENTATION itself may not be modified
+in any way, including by removing the copyright notice, except as
+required to translate it into languages other than English or into a
 different format.
-In the event of discrepancies between a translated version and the 
+In the event of discrepancies between a translated version and the
 official English version, the official English version shall govern.</p>
-<p>THIS DOCUMENTATION AND THE INFORMATION CONTAINED HEREIN IS PROVIDED 
-"AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING 
-BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A 
-PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS 
-OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER 
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, 
-ARISING FROM, OUT OF OR IN CONNECTION WITH THE DOCUMENTATION OR THE 
+<p>THIS DOCUMENTATION AND THE INFORMATION CONTAINED HEREIN IS PROVIDED
+"AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING
+BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A
+PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS
+OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
+ARISING FROM, OUT OF OR IN CONNECTION WITH THE DOCUMENTATION OR THE
 USE OF THE INFORMATION HEREIN.</p>
 </blockquote>
 <h1 id="1-introduction">1. Introduction</h1>
-<p><strong>LCONF</strong> The light and simple readable data serialization format for dynamic configurations and data exchange. </p>
-<p>It is a data serialization format designed to be <em>light and simple</em>, <em>with special emphasis on being human-friendly</em> and works well with many modern programming languages. This is a complete specification of the information needed to develop applications for processing LCONF. </p>
-<p>LCONF was specifically designed to be useful to people working with program configuration and configuration files as well as for other common use cases such as: data exchange, interprocess messaging, log files, cross-language data sharing. <br /></p>
-<p>It uses <em>Unicode printable characters</em>, containing the data itself and <em>Indentation</em> to provide structure in combination with very few <em>Ascii characters</em> which provide structural information.
+<p><strong>LCONF</strong> The light and simple readable data serialization format for dynamic configurations and data exchange.</p>
+<p>It is a data serialization format designed <em>with special emphasis on being human-friendly</em> and works well with many
+modern programming languages. This is a complete specification of the information needed to develop applications for
+processing LCONF.</p>
+<p>LCONF was specifically designed to be useful to people working with program configuration and configuration files as
+well as for other common use cases such as: data exchange, interprocess messaging, log files, cross-language data
+sharing. <br /></p>
+<p>It uses <em>Unicode printable characters</em>, containing the data itself and <em>Indentation</em> to provide structure in
+combination with very few <em>Ascii characters</em> which provide structural information.
 This excellent combination allows the data to show itself in a human-friendly, easily readable format.</p>
-<p>Unlike many other data serialization formats LCONF expects a predefined known structure with implemented default data.</p>
 <h2 id="11-design-goals">1.1. Design Goals</h2>
 <p>The design goals for LCONF are, in no priority:</p>
 <ul>
 <li>LCONF is easily writeable and readable by humans.</li>
 <li>LCONF has minmal but strict structure.</li>
-<li>LCONF data is portable between programming languages.</li>
 <li>LCONF allows optional <em>Comment lines</em> which are not part of the actual data.</li>
-<li>LCONF was designed from the start to expects a predefined known structure with implemented default data.</li>
+<li>LCONF was designed from the start to expect a predefined known structure with implemented default data.</li>
 </ul>
 <h2 id="12-relation-to-other-data-serialization-formats">1.2. Relation to other data serialization formats</h2>
-<p>LCONF builds upon some concepts from <a href="http://json.org/">JSON</a>, <a href="https://code.google.com/p/rson/">RSON</a>/<a href="https://pypi.python.org/pypi/rsonlite/0.1.0">RSONLITE</a>, <a href="http://en.wikipedia.org/wiki/INI_file">INI</a>, and <a href="http://yaml.org/">YAML</a>but has also very destinct features.</p>
-<p>A major difference in design to many other data serialization formats is that LCONF was designed from the start to expects a predefined known structure with implemented default data.</p></div>
+<p>LCONF builds upon some concepts from <a href="http://json.org/">JSON</a>, <a href="https://code.google.com/p/rson/">RSON</a>,
+<a href="https://pypi.python.org/pypi/rsonlite/0.1.0">RSONLITE</a>, <a href="http://en.wikipedia.org/wiki/INI_file">INI</a>, and
+<a href="http://yaml.org/">YAML</a> but has also a few destinct features.</p>
+<p>In many situations <code>LCONF</code> is a suitable replacement for any of the others mentioned above.</p>
+<h2 id="13-design-overview">1.3. Design Overview</h2>
+<h3 id="default-values">DEFAULT VALUES</h3>
+<p>A major difference in design to many other data serialization formats is that LCONF was designed from the start to
+expect a predefined known structure with implemented default data.</p>
+<p>Many programs which parse human written data input have to account that some parts of the input may be optional and
+provide some means of checking for such and in some cases default values must be set.</p>
+<p><em>LCONF takes this as the base of its design</em> and <strong>requires</strong> a parser/emitter to implement for any LCONF-Section a
+complete structure with default values. (<code>LCONF-Default-Template-Structure</code>)</p>
+<p>LCONF parsed data only overwrite the defaults.</p>
+<h3 id="readability">READABILITY</h3>
+<p>To help to be easily writeable and readable by humans LCONF supports:</p>
+<ul>
+<li>Named-Sections: which helps to identify separate parts.</li>
+<li>Empty Lines: which are skipped but help to maintain readability.</li>
+<li>Default Comment Lines: which are not part of the data but can be optional emitted.</li>
+<li>Indentation: is used to visualize some of the structure od a LCONF-Document.</li>
+</ul>
+<h3 id="named-sections">NAMED-SECTIONS</h3>
+<p>Named-Sections allow for extended text/info/explanations before or after a <code>LCONF-Section</code> without the need of
+Comment-TAGS.</p>
+<p>Multiple LCONF-Sections can be within one <em>LCONF-Document</em>.</p>
+<h3 id="two-structures-which-hold-data">TWO STRUCTURES WHICH HOLD DATA</h3>
+<ul>
+<li><em>Key :: Value Pairs</em>: Associates a key with a data value.</li>
+<li>
+<p><em>Lists</em>: there are three sub types of lists:</p>
+<ul>
+<li><em>Key :: Value-Lists</em>: <strong>single-line</strong> lists which associates a key with a list of data values.</li>
+<li><em>Key-Value-Lists</em>: <strong>multi-line</strong> lists which associates a key with a list of data values.</li>
+<li><em>List-Of-Tuples</em>: <strong>multi-line</strong> lists which associates a key with Column-Names to a list of column data values.
+  This lends itself especially well to data similar to multi-dimensional lists or tables e.g. csv data.</li>
+</ul>
+</li>
+</ul>
+<h3 id="two-collection-structures">TWO COLLECTION STRUCTURES</h3>
+<ul>
+<li><em>Single-Blocks</em>: are a collections of any of the four main structure types. (Key :: Value Pairs, Lists, Single-Blocks
+    and Repeated-Blocks)</li>
+<li><em>Repeated-Blocks</em>: are similar to Single-Blocks but additionally allow the configuration of multiple such blocks
+    within a LCONF-Section.</li>
+</ul>
+<h3 id="order">ORDER</h3>
+<p>LCONF-Structure is ordered so that emitting of the same LCONF-Document will result always in an identical
+representation. The order is based on the implemented <code>LCONF-Default-Template-Structure</code>.</p>
+<h1 id="2-lconf-standard-specification">2. LCONF-Standard Specification</h1>
+<h2 id="21-key-value-separator">2.1 Key-Value-Separator</h2>
+<p><code>" :: "</code></p>
+<p>(<code>one space, double colons, one space</code>) is used as a <em>Key-Value-Separator</em>.</p>
+<h2 id="22-trailing-spaces">2.2 Trailing Spaces</h2>
+<p>LCONF does not allow any <em>Trailing Space</em> within a LCONF-Section.</p>
+<h2 id="23-lconfs-native-data-type">2.3 LCONF's Native Data Type</h2>
+<p>Unlik JSON's basic types which are: strings, numbers, booleans, object, arrays, and null<em>LCONF</em> has only one native
+type: <em>strings</em>.</p>
+<p>String values are never quoted or escaped.</p>
+<p>See also later the part of: Value Transformation.</p>
+<h2 id="24-indentation">2.4 Indentation</h2>
+<p>LCONF allows only spaces to be used as indentation. The number of spaces used per indentation level is set within
+the LCONF-Section opening line.</p>
+<p>The example below would specify that 4 spaces are used per intentation level within the LCONF-Section named <em>Example</em></p>
+<pre><code class="text">___SECTION :: 4 :: Example
+___END
+</code></pre>
+
+<h2 id="25-named-sections">2.5 Named-Sections</h2>
+<p>LCONF-Documents can contain multiple named LCONF-Sections. A LCONF-Section has a clear defined Start-TAGS and End-TAGS.
+Everything outside of these is considered <em>additional text</em>.</p>
+<p><strong>WARNING:</strong> LCONF-Section Start/End TAGS are forbidden in any form except for the defined purpose.</p>
+<h3 id="section-start-tag">Section Start TAG</h3>
+<p><code>"___SECTION"</code></p>
+<p>(<code>three underlines, capital SECTION</code>)</p>
+<p>This is followed by a <code>Key-Value-Separator</code> and the number of spaces used per indentation level followed
+by a second <code>Key-Value-Separator</code> and the section name.</p>
+<p>The <em>LCONF-Section-Start-TAG</em> must always be without any indentation.</p>
+<pre><code class="text">___SECTION :: 4 :: the name can also contain spaces or unicode
+</code></pre>
+
+<h3 id="section-end-tag">Section End TAG</h3>
+<p><code>"___END"</code></p>
+<p>(<code>three underlines, capital END</code>)</p>
+<p>The <em>LCONF-Section-End-TAG</em> must always be without any indentation.</p>
+<p>The most basic valid LCONF-Section is:</p>
+<pre><code class="text">___SECTION :: 4 :: Example
+___END
+</code></pre>
+
+<h2 id="26-comment-lines">2.6 Comment-Lines</h2>
+<p><code>"#"</code></p>
+<p>(<code>one number sign</code>) is used as <em>Comment-Line-Identifier</em>.</p>
+<p>If the first none white character in a LCONF-Section line is <strong>#</strong> the line is considered a Comment-Line.</p>
+<p>Comment-Lines <strong>must</strong> have the indentation level of the following line (disregarding empty lines).
+Comment-Lines within a LCONF-Section are always skipped when the <code>LCONF-Section</code> is parsed.</p>
+<pre><code class="text">___SECTION :: 4 :: Example
+# Comment-Line more info
+- Names
+    Tim
+    Sandra
+    # Comment-Line must have the indentation level of the following line
+    Max
+    Frank
+___END
+</code></pre>
+
+<p><strong>NOTE:</strong> Default <em>Comment-Lines and Default-Empty-Lines</em> which are implemented in the
+<code>LCONF-Default-Template-Structure</code> can be optionally emitted.</p>
+<h2 id="27-two-structures-which-hold-data">2.7 Two Structures Which Hold Data</h2>
+<h3 id="key-value-pairs">Key :: Value Pairs</h3>
+<p><code>"Key-Name :: Value"</code></p>
+<p>(<code>one space, double colons, one space</code>) is used as a <em>Key-Value-Separator</em>.</p>
+<p><strong>Exception:</strong> for <em>Empty Values</em> the last space is skipped so that there is no trailing space.</p>
+<pre><code class="text">___SECTION :: 4 :: Example
+Color :: Blue
+FONT :: Liberation Mono
+# Comment below is an Empty Value with no trailing space.
+MyEmptyKeyValuePair ::
+___END
+</code></pre>
+
+<p><em>Key :: Value Pairs</em> are always <strong>single-line</strong> items where the value is everything after the <code>Key-Value-Separator</code>
+ which and is always interpreted as a <code>single string</code>.</p>
+<h3 id="lists">Lists:</h3>
+<p><code>"- "</code></p>
+<p>(<code>minus, one space</code>) is used as <em>List-Identifier</em> for all <code>three sub types of lists</code>: <strong>"- List-Identifier Name"</strong></p>
+<p>Example of all tree LCONF-List types.</p>
+<pre><code class="text">___SECTION :: 4 :: SectionName
+
+# Key :: Value-List: a single-line list
+- Names :: Tim,Sandra,Max
+
+# Key-Value-List: a multi-line list with indentation
+- Names
+    Tim
+    Sandra
+    Max
+
+# List-Of-Tuples: a multi-line list with indentation
+- Colors RGB |Color Name|Red|Green|Blue|
+    forestgreen,          34,  139,  34
+    brick,               156,  102,  31
+___END
+</code></pre>
+
+<h4 id="key-value-lists">Key :: Value-Lists</h4>
+<p>These are ordered collections of items: a <strong>single-line</strong> list which associates a key with a list of data values which
+are separated by comma.</p>
+<p>Uses a <code>List-Identifier</code> with a List-Name followed by a <code>Key-Value-Separator</code> and the values are separated by
+<code>","</code> (<code>comma</code>).</p>
+<p>IMPORTAND: leading or ending whitespace of comma separated values are stripped when a LCONF-Section is parsed.</p>
+<p>Each List-Item is always interpreted as a <code>single string</code>. This implies that List-Items can not be any of the four main
+structure types. (Key :: Value Pairs, Lists, Single-Blocks and Repeated-Blocks)</p>
+<p><strong>Exception:</strong> for <em>Empty Key :: Value-Lists</em> the last space is skipped so that there is no trailing space.</p>
+<pre><code class="text">___SECTION :: 4 :: Example
+- Colors :: Black,White,Blue,Red,Green
+# Comment below is an empty Empty Key :: Value-List with no trailing space.
+- MyEmptyList ::
+___END
+</code></pre>
+
+<h4 id="key-value-lists_1">Key-Value-Lists</h4>
+<p>These are ordered collections of items: a <strong>multi-line list</strong> which associates a key with a list of data values.
+Values are written on separate lines (List-Items) and use one indentation level based on the List-Identifier line.</p>
+<p>Basically the same as <code>Key :: Value-List</code> just uses a different notation for readability and is mostly useful for
+longer lists or when the items are long e.g. whole sentences.</p>
+<p>Uses a <code>List-Identifier</code> with a List-Name and any value is places on a new line with indentation.</p>
+<p>Each List-Item is always interpreted as a <code>single string</code>. This implies that List-Items can not be any of the four main
+structure types. (Key :: Value Pairs, Lists, Single-Blocks and Repeated-Blocks)</p>
+<p><strong>Exception:</strong> for <em>Empty Key-Value-Lists</em> there is no new value line.</p>
+<pre><code class="text">___SECTION :: 4 :: Example
+- Names
+    Tim
+    Sandra
+    Max
+    Frank
+# Comment below is an empty Empty Key-Value-Lists.
+- MyEmptyList
+___END
+</code></pre>
+
+<p>TIP: eventhough lists of lists are not supported one could mimice such by using for example a LCONF Key-Value-List
+and have as value comma separated lines which are later further proccessed.</p>
+<pre><code class="text">___SECTION :: 4 :: SectionName
+- Numers
+    534,45
+    0,1,2,3
+    66
+    12,4568,1,3,99,465,12
+___END
+</code></pre>
+
+<p>The List-Item: <em>534,45</em> or <em>0,1,2,3</em> etc. are just normal string lines (item lines of an: <code>Key-Value-List</code>)
+e.g. one could use later a transformation function splitting each value line by comma.</p>
+<p>NOTE: many of such caes might be better solved by using a List-Of-Tuples.</p>
+<h4 id="list-of-tuples">List-Of-Tuples</h4>
+<p>These are ordered collections of items: a <strong>multi-line</strong> list which associates a key with multiple Column-Names to a
+list of multiple column data values. This lends itself especially well to data similar to multi-dimensional lists or
+tables e.g. csv data.</p>
+<p>Uses a <code>List-Identifier</code> with a List-Name followed by <code>one space</code> and <code>unique Column-Names</code> which are embraced and
+separated by <code>"|"</code> <code>pipe sign (vertical bar)</code>.</p>
+<p>List-Of-Tuples items value lines are written on separate lines (List-Items - rows) and use one indentation level
+based on the List-Identifier lin. Each lines values are separated by <code>","</code> <code>comma</code>.</p>
+<p>IMPORTANT: spaces around Column-Names and values are stripped which helps to write proper columns.</p>
+<p><strong>Exception:</strong> for <em>Empty List-Of-Tuples</em> there is no new value line but the Column-Names are still required.</p>
+<pre><code class="text">___SECTION :: SectionName
+# Comment: List-Name is &quot;Colors RGB&quot;
+#          Columns are: &quot;Color Name&quot;, &quot;Red&quot;, &quot;Green&quot;, &quot;Blue&quot;
+- Colors RGB |Color Name| Red| Green| Blue|
+    forestgreen,           34,   139,   34
+    brick,                156,   102,   31
+# Comment: below is an empty Empty List-Of-Tuples:
+#          List-Name is &quot;MyEmptyListOfTuples&quot;
+#          Columns are: &quot;X&quot;, &quot;Y&quot;, &quot;Z&quot;
+ - MyEmptyListOfTuples |X|Y|Z|
+ ___END
+</code></pre>
+
+<p>List-Of-Tuples can have empty (missing) values: <code>Empty/Missing Values</code> are returned as empty strings or if defined per
+Column-Replacement-Values. Any <code>Replacement-Values</code> must be implemented in the <code>LCONF-Default-Template-Structure</code>.</p>
+<p>Example of a LCONF-List-Of-Tuples with <code>Empty/Missing Values</code> which will be returned as empty strings or with a
+defined per column <code>Replacement-Value</code>.</p>
+<pre><code class="text">___SECTION :: SectionName
+- ExcelTable |X|Y|Z|
+    # COMMENT: the 2. item is empty or missing
+    value1,       , value3
+    value1, value2, value3
+    # COMMENT: all items are empty or missing: the indentation level must be kept
+    ,             ,
+    # COMMENT: spaces are not important
+    ,,
+___END
+</code></pre>
+
+<h2 id="28-two-collection-structures">2.8 Two Collection Structures</h2>
+<h3 id="single-blocks">Single-Blocks</h3>
+<p><code>". "</code></p>
+<p>(<code>dot, one space</code>)  is used as <code>Single-Block-Identifier</code>: <strong>". Single-Block-Identifier Name"</strong></p>
+<p>These are a collections of any of the four main structure types. (Key :: Value Pairs, Lists, Single and
+Repeated-Blocks)</p>
+<p>Single-Block items use <strong>one</strong> additional indentation level.</p>
+<p>An <em>Empty Single-Block-Identifier</em> line is permitted which will use all default values as implemented by a
+<code>LCONF-Template-Default-Structure</code>. It is basically the same as if one does not define it at all.</p>
+<p>In some cases this might be useful: e.g. if one wants previous comment lines.</p>
+<pre><code class="text">___SECTION :: SectionName
+. Single-Block whatever name
+    single_block_item1_key :: single_block_item1_value
+    - single_block_item2_key list
+        my List-Item 1
+    # Comment: Blocks can also have other (nested) Blocks
+    . inner_single_block_item3_key
+        inner_single_block_item1_key :: inner_single_block_item1_value
+# Comment: below a permitted empty `Single-Block-Identifier` which will use all default values
+. Single-Block 2
+___END
+</code></pre>
+
+<h3 id="repeated-blocks">Repeated-Blocks</h3>
+<p><code>"* "</code></p>
+<p><code>asterisk, one space</code> is used as <code>Repeated-Block-Identifier</code>: <strong>"* Repeated-Block-Identifier Name"</strong></p>
+<p>These are similar to the Single-Blocks but additionally allow the configuration of multiple such blocks within a
+LCONF-Section.</p>
+<p>A unique <code>Block-Name</code> which uses <strong>one</strong> additional indentation level defines a new Block and is written on a separate
+line.</p>
+<p>Block-Name items use <strong>another</strong> additional indentation level.</p>
+<p>An <em>Empty Repeated-Block-Identifier</em> line is permitted but without a <code>Block-Name</code> it does nothing.
+It is basically the same as if one does not define it at all.</p>
+<p>In some cases this might be useful: e.g. if one wants previous comment lines.</p>
+<pre><code class="text">___SECTION :: SectionName
+* Color_BLK_Identifier
+    Sky Blue_Blk-Name Theme
+        blk_item_red :: 135
+        blk_item_green :: 206
+        blk_item_blue :: 235
+    # Second Block-Name is an empty Block which uses all default values
+    Red Theme
+# Comment: below a permitted empty `Repeated-Block-Identifier` line which will do nothing because
+# for Repeated-Blocks the main Structure item is a unique Block-Name.
+* Color_BLK_Identifier 2
+___END
+</code></pre>
+
+<p>NOTE: to get the <code>Default-Values</code> for a whole Block: only define the Block-Identifier and the Block-Name without any
+items.</p>
+<h4 id="block-names">Block-Names</h4>
+<p>Each Block of a <code>Repeated-Block-Structure</code> is named: <code>Block-Names</code> use <strong>one</strong> additional indentation level based on
+the <code>Repeated-Block-Identifier</code> line.</p>
+<p><em>Empty Block-Names</em>: if a <code>Block-Name</code> is defined without any items at all it is still valid using all defaults for
+such Block from the <code>LCONF-Template-Default-Structure</code>.</p>
+<p>Any number of Block-Names can be user defined: but this can also be limited in a <code>LCONF-Template-Default-Structure</code>.
+(NUMBER_MIN_REQUIRED_BLOCKS, NUMBER_MAX_ALLOWED_BLOCKS)</p>
+<h1 id="3-lconf-character-restrictions">3. LCONF Character Restrictions</h1>
+<h4 id="restriction-section-startend-tag">Restriction: Section Start/End Tag</h4>
+<p>Character combinations <code>___SECTION</code>, <code>___END</code> are forbidden in any form except for the defined purpose.
+Each LCONF-Section Start-TAG must be closed by an corresponding LCONF-Section End-TAG.</p>
+<p>LCONF does not allow nested Sections.</p>
+<h4 id="restriction-trailing-spaces">Restriction: Trailing Spaces</h4>
+<p>LCONF does not allow any Trailing Space within LCONF-Sections.</p>
+<h4 id="restriction-first-none-white-character-of-a-line">Restriction: FIRST none white character of a line</h4>
+<p>Some first none white character of a line are <strong>reserved</strong> as special purpose <em>Identifiers</em>. Any of them are permitted
+in the middle or end of a line.</p>
+<ul>
+<li><code>- minus</code> reserved only for all kind of <code>Lists-Identifier</code></li>
+<li><code>. dot</code> reserved only for <code>Single-Block-Identifier</code></li>
+<li><code>* asterisk</code> reserved only for <code>Repeated-Block-Identifier</code></li>
+<li><code># number sign</code> reserved only for <code>Comment-Line-Identifier</code></li>
+</ul>
+<h4 id="restriction-last-character-of-a-line">Restriction: LAST character of a line</h4>
+<ul>
+<li>
+<p><code>Key-Value-List-Identifier</code> lines may <strong>NOT end</strong> with a <code>pipe sign (vertical bar)</code> <strong>|</strong></p>
+</li>
+<li>
+<p><code>List-Of-Tuples-Identifier</code> lines <strong>MUST end</strong> with a <code>pipe sign (vertical bar)</code> <strong>|</strong></p>
+<p>List-Of-Tuples-Identifier can not contain any <code>pipe sign (vertical bar)</code> except for the purpose of separating
+<code>Column-Names</code>.</p>
+<p>List-Of-Tuples must contain as value tuples (row lines) with the same number of items as column-names specified.
+(empty items are allowed)</p>
+</li>
+</ul>
+<h4 id="restriction-comment-lines-indentation">Restriction: Comment Lines indentation</h4>
+<p><strong>#</strong> Comment lines within a <code>LCONF-Section</code> are required to have the indentation of the next none empty line.</p>
+<h4 id="restriction-unique-names">Restriction: Unique names</h4>
+<p>LCONF requires that some of the Key-Names are unique.</p>
+<ul>
+<li>
+<p>all <code>Main Keys</code> (keys without any indentation) must be unique</p>
+</li>
+<li>
+<p>within a <code>List-Of-Tuples</code> all Column-Names must be unique</p>
+</li>
+<li>
+<p>withing a <code>Single-Block</code> all direct keys (keys with one additional indentation level) must be unique</p>
+</li>
+<li>
+<p>within a <code>Repeated-Block</code> all direct keys (keys with one additional indentation level - <em>Block-Names</em>) must be unique</p>
+</li>
+<li>
+<p>within each <code>Named-Block</code> of a <em>Repeated-Block</em> all direct keys (keys with one additional indentation level) must be
+  unique</p>
+</li>
+</ul>
+<h1 id="4-lconf-default-template-structure">4. LCONF-Default-Template-Structure</h1>
+<p>LCONF <strong>requires</strong> a parser/emitter to implement for any LCONF-Section a complete structure with default values. Such <code>LCONF-Default-Template-Structure</code> implementation may differ from programming language and parser/emitter but there are
+some common requirements outlined below.</p>
+<h2 id="41-lconf-section-key-order">4.1 LCONF-Section Key Order</h2>
+<p>LCONF-Structure is ordered so that emitting of the same LCONF-Document will result always in an identical
+representation. The order is always based on the implemented <code>LCONF-Default-Template-Structure</code> and not on the
+<code>LCONF-Section text</code>.</p>
+<p><strong>Exception:</strong></p>
+<ul>
+<li>
+<p>The order of <em>Block-Names</em> of Repeated-Blocks will always be as as in the <code>LCONF-Section text</code> because these are not
+    previously known.</p>
+</li>
+<li>
+<p>The order of <em>Lists items</em> will always be as in the <code>LCONF-Section text</code> because these are not previously known.</p>
+</li>
+</ul>
+<h2 id="42-default-commentempty-lines">4.2 Default-Comment/Empty Lines</h2>
+<p><code>LCONF-Default-Template-Structure</code> can implement <em>Default-Comment/Empty Lines</em> which can be optionally emitted.</p>
+<p><strong>Restrictions: Default-Comment/Empty Lines</strong></p>
+<ul>
+<li>
+<p>before <code>Block-Names</code> (dummy blk) there may be no <code>Default-Comment/Empty Lines</code> within the code of the
+  <code>LCONF-Default-Template-Structure</code>.</p>
+</li>
+<li>
+<p>within multi-line <code>Lists</code> <em>Key-Value-Lists</em> or <em>List-Of-Tuples</em> there may be no <code>Default-Comment/Empty Lines</code> between
+  default List-Items within the code of the <code>LCONF-Default-Template-Structure</code>.</p>
+</li>
+</ul>
+<h2 id="43-default-values">4.3 Default Values</h2>
+<p>LCONF is based on the idea of a predefined <code>LCONF-Default-Template-Structure</code> which must fully implement any
+LCONF-Section.</p>
+<ul>
+<li>This gives it order, default values and one knows what to expect.</li>
+<li>
+<p>This helps to emit/dump in proper order based on the implemented structure.</p>
+<ul>
+<li>inclusive any <code>Default-Comment/Empty Lines</code></li>
+<li>Any LCONF library <strong>must</strong> implement an option to emit/dump any <code>Repeated-Block</code> with an optional 'Dummy-Block'
+    with its default values.</li>
+</ul>
+</li>
+<li>
+<p>Only a few things are not pre-known:</p>
+<ul>
+<li>Any LCONF-Section set values.</li>
+<li>The number of items in lists.</li>
+<li>
+<p>The number of Block-Names in <code>Repeated-Blocks</code>.</p>
+</li>
+<li>
+<p>For special purposes <code>LCONF-Template-Default-Structure</code> Repeated-Blocks implementation can optional predefine
+    some limitations: NUMBER_MIN_REQUIRED_BLOCKS, NUMBER_MAX_ALLOWED_BLOCKS</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Because all structures must be previously implemented within the code any library which implements <em>LCONF - The light
+    and simple readable data serialization format</em> should give some thoughts as how do write such <code>LCONF-Template-Default-Structure</code> as easily as possible.</p>
+</li>
+<li>
+<p>Parsing a LCONF-Section (text/file) will just overwrite any default values.</p>
+<p>So the simplest LCONF-Section is only a START/END TAG:
+  which will be parsed to all implemented defaults as nothing gets overwritten.</p>
+<p>NOTE: There won't be any Repeated-Blocks because there are no default Block-Names set.</p>
+</li>
+</ul>
+<h2 id="44-value-transformation">4.4 Value Transformation</h2>
+<p>By design LCONF only supports <em>string</em> types for data values.
+However <code>LCONF-Libraries</code> can (and should, where appropriate) implement an easy way for value transformation using
+customary hook functions or some other ways to achieve such depending on the library language.</p></div>
         </div>
 
-        <footer class="col-md-12">
-            <hr>
-            
-            <p>Copyright &copy; 2014 - 2015, <strong>peter1000</strong> <a href="https://github.com/peter1000">https://github.com/peter1000</a>. <br /> All rights reserved.</p>
-            
-        </footer>
+    <footer class="col-md-12">
+        <hr>
         
+        <center>Copyright &copy; 2014 - 2015, <strong>peter1000</strong> <a href="https://github.com/peter1000">https://github.com/peter1000</a>. <br /> All rights reserved.</center>
         
+        <center>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</center>
+    </footer>
 
-        <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+
+        <script src="../js/jquery-1.10.2.min.js"></script>
         <script src="../js/bootstrap-3.0.3.min.js"></script>
-        <script src="../js/prettify-1.0.min.js"></script>
+        <script src="../js/highlight.pack.js"></script>
         <script src="../js/base.js"></script>
     </body>
 </html>
